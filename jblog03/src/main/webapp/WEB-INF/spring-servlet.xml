@@ -45,6 +45,22 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- Default Servlet Handler -->
 	<mvc:default-servlet-handler />
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/auth" />
+			<bean class="com.douzone.jblog.security.LoginInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/user/logout" />
+			<bean class="com.douzone.jblog.security.LogoutInterceptor" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/*/edit" />
+			<bean class="com.douzone.jblog.security.CheckMineInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<!-- ViewResolver 설정 -->
 	<bean id='viewResolver'

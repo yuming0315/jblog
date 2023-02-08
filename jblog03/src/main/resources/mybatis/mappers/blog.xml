@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="blog">
+
+	<select id="getBlog" resultType="blogvo" parameterType="string" >
+		<![CDATA[
+		select *
+		 from blog
+		 where id = #{id };
+		 ]]>
+	</select>
+	
+	<select id="getLatestPost" resultType="postvo" parameterType="String" >
+		<![CDATA[
+		select b.no no, category_no, title, reg_date
+		 from category a join post b
+		 on a.no = b.category_no
+		 where a.id = #{id }
+		 order by b.reg_date desc
+		 limit 0,5
+		 ]]>
+	</select>
+	
+	<select id="getCategory" resultType="categoryvo" parameterType="String" >
+		<![CDATA[
+		select *
+		 from category
+		 where id = #{id }
+		 ]]>
+	</select>
+
+	<select id="getBlog" resultType="blogvo" parameterType="String" >
+		<![CDATA[
+		select *
+		 from blog
+		 where id = #{id }
+		 ]]>
+	</select>
+
+	<update id="updateBlog" parameterType="blogvo" >
+		<![CDATA[
+		update
+		 set title=#{title},profile=ifnull(#{profile},profile)
+		 where id=#{id }
+		 ]]>
+	</update>
+
+</mapper>
