@@ -19,7 +19,8 @@
 					<li><a href="${pageContext.request.contextPath}/${authUser.id}/category">카테고리</a></li>
 					<li><a href="${pageContext.request.contextPath}/${authUser.id}/write">글작성</a></li>
 				</ul>
-				<form action="${pageContext.request.contextPath}/${authUser.id }/edit" method="post">
+				
+				<form action="${pageContext.request.contextPath}/${authUser.id }/edit" method="post" enctype="multipart/form-data" >
 	 		      	<table class="admin-config">
 			      		<tr>
 			      			<td class="t">블로그 제목</td>

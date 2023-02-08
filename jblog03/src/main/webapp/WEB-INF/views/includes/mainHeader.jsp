@@ -3,15 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 	<div id="header">
-		<h1>${title}</h1>
+		<h1>${blog.title}</h1>
 		<ul>
 			<c:choose>
 				<c:when test="${empty authUser }">
@@ -27,5 +21,3 @@
 
 		</ul>
 	</div>
-</body>
-</html>

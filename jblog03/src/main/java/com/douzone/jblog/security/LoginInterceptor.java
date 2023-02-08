@@ -7,12 +7,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.service.UserService;
 import com.douzone.jblog.vo.UserVo;
 
 public class LoginInterceptor implements HandlerInterceptor {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private BlogService blogService;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -35,6 +38,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		
 		HttpSession session = request.getSession(true);
 		session.setAttribute("authUser", authUser);
+		session.setAttribute("title",blogService.getBlog(authUser.getId()).getTitle());
 		
 		response.sendRedirect(request.getContextPath());
 		
