@@ -14,12 +14,8 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="wrapper">
 			<div id="content" class="full-screen">
-				<ul class="admin-menu">
-					<li class="selected">기본설정</li>
-					<li><a href="${pageContext.request.contextPath}/${authUser.id}/category">카테고리</a></li>
-					<li><a href="${pageContext.request.contextPath}/${authUser.id}/write">글작성</a></li>
-				</ul>
 				
+				<c:import url="/WEB-INF/views/includes/admin-menu.jsp" />
 				<form action="${pageContext.request.contextPath}/${authUser.id }/edit" method="post" enctype="multipart/form-data" >
 	 		      	<table class="admin-config">
 			      		<tr>

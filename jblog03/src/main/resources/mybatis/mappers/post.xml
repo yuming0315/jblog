@@ -2,20 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="post">
-	<insert id="insertUser" parameterType="uservo">
+	<select id="getPostList" resultType="postvo" parameterType="map" >
 		<![CDATA[
-		insert
-		into user
-		values (#{id }, #{name }, password(#{password }),now())
+		select b.no no, category_no, title, reg_date
+		 from category a join post b
+		 on a.no = b.category_no
+		 where a.id = '${id }'
 		 ]]>
-	</insert>
-
-	<select id="getUser" resultType="uservo" parameterType="uservo" >
-		<![CDATA[
-		select id, name, join_date
-		 from user 
-		 where id = #{id } and password=password(#{password})
+		 <if test='c_no != null' >
+			<![CDATA[
+		 	and a.no = #{c_no }
+		 	]]>
+		 </if>
+		 <![CDATA[
+		 order by b.reg_date desc
 		 ]]>
 	</select>
-
+	
+	<insert id="addPost" parameterType="postvo" >
+		<![CDATA[
+		insert into post
+		 values( no,#{category_no },'${title }','${contents}',now() )
+		 ]]>
+	</insert>
+	
+	<select id="getPost" parameterType="long" resultType="postvo" >
+		<![CDATA[
+		select *
+		from post
+		where no=#{no }
+		 ]]>
+	</select>
+	
 </mapper>

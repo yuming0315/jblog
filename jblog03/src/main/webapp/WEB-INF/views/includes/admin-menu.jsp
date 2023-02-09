@@ -4,12 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div id="navigation">
-	<h2>카테고리</h2>
-	<ul>
-		<c:forEach items="${requestScope.category }" var="vo">
-			<li><a
-				href="${pageContext.request.contextPath}/${blog.id}/${vo.no}">${vo.name }</a></li>
-		</c:forEach>
-	</ul>
-</div>
+<ul class="admin-menu">
+	<li class="selected">기본설정</li>
+	<li><a
+		href="${pageContext.request.contextPath}/${authUser.id}/category">카테고리</a></li>
+	<li><a
+		href="${pageContext.request.contextPath}/${authUser.id}/write">글작성</a></li>
+</ul>

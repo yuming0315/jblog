@@ -4,6 +4,7 @@ public class CategoryVo {
 	private Long no;
 	private String id;
 	private String name;
+	private Long postNum;
 	public Long getNo() {
 		return no;
 	}
@@ -22,6 +23,11 @@ public class CategoryVo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	public Long getPostNum() {
+		return postNum;
+	}
+	public void setPostNum(Long postNum) {
+		this.postNum = postNum;
+	}
 	
 }

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%pageContext.setAttribute("newline","\n");%>
 <!doctype html>
 <html>
 <head>
@@ -13,19 +14,21 @@
 </head>
 <body>
 	<div id="container">
-		<c:import url="/WEB-INF/views/includes/mainHeader.jsp" />
+		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">
-					<h4>${blog.title }</h4>
-					<p></p>
+				
+					<h4>${onPost.title }</h4>
+					<p>${fn:replace(onPost.contents,newline,"<br>") }
+					</p>
 				</div>
 				<ul class="blog-list">
 
 
-					<c:forEach items="${requestScope.latestPost }" var="vo">
+					<c:forEach items="${requestScope.post }" var="vo">
 						<li><a
-							href="${pageContext.request.contextPath}/${authUser.id}/${vo.category_no }/${vo.no}">${vo.title }</a>
+							href="${pageContext.request.contextPath}/${blog.id}/${vo.category_no }/${vo.no}">${vo.title }</a>
 							<span>${vo.reg_date }</span></li>
 					</c:forEach>
 				</ul>

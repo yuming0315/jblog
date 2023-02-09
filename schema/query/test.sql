@@ -3,16 +3,28 @@ desc user;
 select * from user;
 select * from blog;
 select * from category;
+select * from post;
 
 select id,title,profile
 		 from blog
 		 where id = 'yum';
+
+select a.no no,name,count(b.no) postNum
+		 from category a left join post b
+		 on a.no = b.category_no
+		 where a.id='wlals'
+         group by a.no;
+		 
          
 desc blog;
 
 desc category;
 
 desc post;
+
+select no
+		 from category
+		 where id = 'wlals' and name='기본';
 
 insert
 		 into user

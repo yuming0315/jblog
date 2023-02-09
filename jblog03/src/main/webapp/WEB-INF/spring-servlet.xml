@@ -13,7 +13,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context.xsd">
+http://www.springframework.org/schema/context/spring-context.xsd" >
 
 	<aop:aspectj-autoproxy />
 	<!-- validator, conversionService, messageConverter를 자동으로 등록 -->
@@ -50,16 +50,22 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			<mvc:mapping path="/user/auth" />
 			<bean class="com.douzone.jblog.security.LoginInterceptor" />
 		</mvc:interceptor>
-		
+
 		<mvc:interceptor>
 			<mvc:mapping path="/user/logout" />
 			<bean class="com.douzone.jblog.security.LogoutInterceptor" />
 		</mvc:interceptor>
-		
+
 		<mvc:interceptor>
+			<mvc:mapping path="/*/write" />
 			<mvc:mapping path="/*/edit" />
+			<mvc:mapping path="/*/post" />
+			<mvc:mapping path="/*/category" />
+			<mvc:mapping path="/*/deleteCategory/*" />
 			<bean class="com.douzone.jblog.security.CheckMineInterceptor" />
 		</mvc:interceptor>
+		
+		
 	</mvc:interceptors>
 
 	<!-- ViewResolver 설정 -->
