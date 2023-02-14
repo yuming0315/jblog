@@ -23,7 +23,7 @@ public class BlogService {
 		map.put("blog", blogRepository.getBlog(id));
 		map.put("post", blogRepository.getPostList(id,c_no));
 		map.put("category", blogRepository.getCategory(id));
-		if(map.get("post") != null) {
+		if(!((List<PostVo>) map.get("post")).isEmpty()) {
 			p_no = ((List<PostVo>)map.get("post")).get(0).getNo();
 			map.put("onPost", blogRepository.getPost(p_no) );
 		}
