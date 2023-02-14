@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="category">
+	<select id="getCategory" resultType="categoryvo"
+		parameterType="String">
+		<![CDATA[
+		select *
+		 from category
+		 where id = '${id}'
+		 ]]>
+	</select>
+
+	<select id="findCategoryNo" resultType="Long"
+		parameterType="categoryvo">
+		<![CDATA[
+		select no
+		 from category
+		 where id = '${id}' and name='${name }'
+		 ]]>
+	</select>
+
+	<select id="getCategoryAndPostNum" resultType="categoryvo"
+		parameterType="String">
+		<![CDATA[
+		select a.no no,name,count(b.no) postNum
+		 from category a left join post b
+		 on a.no = b.category_no
+		 where a.id='${id}'
+         group by a.no
+		 ]]>
+	</select>
+
+	<insert id="addCategory" parameterType="categoryvo">
+		<![CDATA[
+		insert into category
+		values( no,'${id}','${name }')
+		 ]]>
+	</insert>
+	
+	<delete id="deleteCategory" parameterType="categoryvo">
+		<![CDATA[
+		delete from category where no=#{no } and id='${id}';
+		 ]]>
+	</delete>
+</mapper>
